@@ -1,5 +1,9 @@
 package com.hfad.energon
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,10 +14,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -49,8 +55,17 @@ fun SplashScreen(navController: NavController) {
 
             )
     )
+    val scale = remember { Animatable(1f) }
+
     LaunchedEffect(Unit) {
-        delay(3000L)
+        val startTime = System.currentTimeMillis()
+        val duration = 2000L
+
+        while (System.currentTimeMillis() - startTime < duration) {
+            scale.animateTo(1.1f, animationSpec = tween(700))
+            scale.animateTo(1.0f, animationSpec = tween(700))
+        }
+
         navController.navigate(Screen.SignInScreen.route)
     }
     Box(
@@ -64,9 +79,14 @@ fun SplashScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.energon2),
+                painter = painterResource(id = R.drawable.energon10),
                 contentDescription = null,
-                modifier = Modifier.size(160.dp)
+                modifier = Modifier
+                    .size(160.dp)
+                    .graphicsLayer {
+                        scaleX = scale.value
+                        scaleY = scale.value
+                    }
             )
 
 
