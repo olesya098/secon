@@ -114,7 +114,7 @@ private fun TitleText() {
     Text(
         text = "Создание Акта",
         color = Color.Black,
-        fontSize = 16.sp,
+        fontSize = 19.sp,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(start = 7.dp, end = 7.dp),
         textAlign = TextAlign.Center
@@ -126,7 +126,7 @@ private fun AccessStatus(verno: Boolean, onVernoChange: (Boolean) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(end = 15.dp)
+            .padding(end = 15.dp, start = 10.dp)
             .background(color = textField, shape = RoundedCornerShape(12.dp)),
         contentAlignment = Alignment.Center
     ) {
@@ -479,7 +479,7 @@ private fun DropdownSection(
                 .padding(top = if (title != null) 8.dp else 12.dp)
                 .clickable { onExpandedChange(true) }
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(53.dp)
                 .background(textField, shape = RoundedCornerShape(18.dp)),
             contentAlignment = Alignment.CenterStart
         ) {
@@ -530,7 +530,7 @@ private fun CustomTextField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(text = label) },
-        modifier = modifier.height(60.dp),
+        modifier = modifier.height(53.dp),
         shape = RoundedCornerShape(18.dp),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = textField,
