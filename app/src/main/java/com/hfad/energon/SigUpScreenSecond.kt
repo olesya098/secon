@@ -1,6 +1,5 @@
 package com.hfad.energon
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +24,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -39,17 +37,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
-
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -58,11 +52,10 @@ import com.hfad.energon.ui.theme.lable
 import com.hfad.energon.ui.theme.textField
 
 @Composable
-fun SigUpScreen (navController: NavController){
+fun SigUpScreenSecond(navController: NavController) {
     var secondName by remember { mutableStateOf("") }
     var firstName by remember { mutableStateOf("") }
     var brigada by remember { mutableStateOf("") }
-
     var name by remember { mutableStateOf("") }
     val fredoRegular = FontFamily(Font(com.hfad.energon.R.font.fredokaregular))
     var showError by remember { mutableStateOf(false) }
@@ -114,21 +107,23 @@ fun SigUpScreen (navController: NavController){
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
                     .verticalScroll(rememberScrollState())
+                    .fillMaxSize()
+
                     .padding(start = 16.dp, end = 16.dp, top = 20.dp)
             ) {
                 Box(
-                    modifier = Modifier.background(
-                        color = textField,
-                        shape = CircleShape
-                    )
+                    modifier = Modifier
+                        .background(
+                            color = textField,
+                            shape = CircleShape
+                        )
                         .size(45.dp)
                         .clickable {
                             navController.navigate(Screen.SignInScreen.route)
                         },
                     contentAlignment = Alignment.Center
-                ){
+                ) {
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowLeft,
                         contentDescription = null,
@@ -149,7 +144,7 @@ fun SigUpScreen (navController: NavController){
 
                 // Подзаголовок
                 Text(
-                    text = "Введите Личные данные первого сотрудника",
+                    text = "Введите Личные данные Второго сотрудника",
                     fontSize = 16.sp,
                     color = Color.Gray,
                     fontFamily = fredoRegular,
@@ -241,7 +236,7 @@ fun SigUpScreen (navController: NavController){
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
 
-                )
+                    )
                 Text(
                     text = "Отчество",
                     fontSize = 16.sp,
@@ -322,7 +317,7 @@ fun SigUpScreen (navController: NavController){
                     )
                 Button(
                     onClick = {
-                        navController.navigate(Screen.SigUpScreenSecond.route)
+                        navController.navigate(Screen.SigUpScreen2.route)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = buttonColor
@@ -330,11 +325,11 @@ fun SigUpScreen (navController: NavController){
                     shape = RoundedCornerShape(15.dp),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 25.dp,)
+                        .padding(top = 25.dp)
                         .height(56.dp)
                 ) {
                     Text(
-                        text ="Перейти ко второму",
+                        text = "Зарегестрироваться",
                         color = Color.White,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
@@ -369,7 +364,7 @@ fun SigUpScreen (navController: NavController){
 
 @PreviewScreenSizes
 @Composable
-fun SigUpScreenPreview() {
-    SigUpScreen(rememberNavController())
+fun SigUpScreenSecond() {
+    SigUpScreenSecond(rememberNavController())
 
 }

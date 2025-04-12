@@ -5,4 +5,5 @@ sealed class Screen(var route: String) {
     object SigUpScreen : Screen("SigUpScreen")
     object SigUpScreen2 : Screen("SigUpScreen2")
     object Akts : Screen("Akts")
+    object SigUpScreenSecond : Screen("SigUpScreenSecond")
 }

@@ -16,7 +16,7 @@ fun Navigatia() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Akts.route
+        startDestination = Screen.SplashScreen.route
     ) {
         composable(Screen.SplashScreen.route){
             SplashScreen(navController)
@@ -32,6 +32,9 @@ fun Navigatia() {
         }
         composable(Screen.Akts.route){
             Akts(navController)
+        }
+        composable(Screen.SigUpScreenSecond.route){
+            SigUpScreenSecond(navController)
         }
 
     }
