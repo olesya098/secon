@@ -59,6 +59,7 @@ import com.hfad.energon.MainTextField
 import com.hfad.energon.R
 import com.hfad.energon.ui.theme.buttonColor
 import com.hfad.energon.ui.theme.lable
+import com.hfad.energon.ui.theme.red
 import com.hfad.energon.ui.theme.textField
 
 @Composable
@@ -156,13 +157,14 @@ private fun Content() {
             ReadingTag()
             MeterConditionSection()
             Painting()
+            PaintingProfile()
             PhotoButtonsSection()
 
             WorkDescriptionSection()
             MainButton(
                 onClick = { /*TODO*/ },
                 modifier = Modifier.fillMaxWidth(),
-                text = "Добавить"
+                text = "Закрыть адрес"
             )
         }
     }
@@ -374,7 +376,7 @@ private fun MeterTypeSection() {
                 value = tagType,
                 onValueChange = { tagType = it },
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text(text = "Номер счетчика") }
+                placeholder = { Text(text = "Тип счетчика") }
             )
             MainTextField(
                 value = tagNumber,
@@ -668,8 +670,8 @@ private fun Painting() {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        PaintingInside("роспись первого", Modifier.weight(1f))
-        PaintingInside("роспись второго", Modifier.weight(1f))
+        PaintingInside("подпись 1 инспектора", Modifier.weight(1f))
+        PaintingInside("подпись 2 инспектора", Modifier.weight(1f))
     }
 }
 
@@ -699,6 +701,54 @@ private fun PaintingInside(text: String, modifier: Modifier = Modifier) {
         )
     }
 }
+@Composable
+private fun PaintingProfile() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        PaintingInsideProfile("подпись потребителя", Modifier.weight(1f))
+        PaintingInsideProfile(
+            "отказался от подписи",
+            Modifier.weight(1f),
+            borderColor = red,
+            textColor = red
+        )
+    }
+}
+
+@Composable
+private fun PaintingInsideProfile(
+    text: String,
+    modifier: Modifier = Modifier,
+    borderColor: Color = Color(0xFF7B7B7B),
+    textColor: Color = Color.Black
+) {
+    Box(
+        modifier = modifier
+            .height(80.dp)
+            .fillMaxWidth()
+            .drawWithContent {
+                drawContent()
+                drawRoundRect(
+                    color = borderColor, // Используем переданный цвет границы
+                    cornerRadius = CornerRadius(18.dp.toPx()),
+                    style = Stroke(
+                        width = 1.dp.toPx(),
+                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 5f), 0f)
+                    )
+                )
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            color = textColor, // Используем переданный цвет текста
+            modifier = Modifier.padding(10.dp),
+            textAlign = TextAlign.Center
+        )
+    }
+}
 
 @Composable
 private fun PhotoButtonsSection() {
@@ -710,24 +760,9 @@ private fun PhotoButtonsSection() {
         MainButton(
             onClick = { },
             modifier = Modifier.weight(1f),
-            text = "Сделать фото"
+            text = "Выбрать из галереи"
         )
-        Box(
-            modifier = Modifier
-                .background(
-                    color = Color(33, 202, 114),
-                    shape = RoundedCornerShape(16.dp)
-                )
-                .weight(0.2f)
-                .height(IntrinsicSize.Max),
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.attach_file),
-                contentDescription = null,
-                modifier = Modifier.padding(12.dp),
-                tint = Color.White
-            )
-        }
+
     }
 
     Row(

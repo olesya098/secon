@@ -26,27 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EnergONTheme {
-                var showDialog by remember { mutableStateOf(false) }
-
-// Кнопка для показа диалога
-                Button(onClick = { showDialog = true }) {
-                    Text("Выбрать тип акта")
-                }
-
-// Показ диалога
-                if (showDialog) {
-                    ActTypeDialog(
-                        onDismissRequest = { showDialog = false },
-                        onControlSelected = {
-                            showDialog = false
-
-                        },
-                        onMobileSmartwaySelected = {
-                            showDialog = false
-
-                        }
-                    )
-                }
+                CreateActScreen()
             }
         }
     }

@@ -15,6 +15,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val greenlite = Color(0xFF46e66c)
 val textField = Color(0xFFF7F7F9)
+val red = Color(0xFFFF7878)
 val lable = Color(0xFF6A6A6A)
 val buttonColor = Color(0xFF21CA72)
 val greenDark = Color(0xFF00B179)

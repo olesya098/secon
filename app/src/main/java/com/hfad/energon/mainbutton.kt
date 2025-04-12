@@ -34,7 +34,7 @@ fun MainButton(
         else
             Text(
                 text = text,
-                fontSize = 15.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
     }
